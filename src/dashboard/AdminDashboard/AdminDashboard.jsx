@@ -1,5 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom';
 
+
 const AdminDashboard = () => {
   return (
     <div className="min-h-screen flex bg-gray-100">
