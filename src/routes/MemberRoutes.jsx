@@ -6,7 +6,7 @@ import Approved from '../dashboard/MemberDashboard/ApprovedBookings'
 import Confirmed from '../dashboard/MemberDashboard/ConfirmedBookings'
 import Payment from '../dashboard/MemberDashboard/Payment'
 import PaymentHistory from '../dashboard/MemberDashboard/PaymentHistory'
-// import Announcements from '../dashboard/MemberDashboard/Announcements'  // চাইলে আনকমেন্ট করো
+
 
 const MemberRoutes = () => {
     return (
@@ -19,7 +19,6 @@ const MemberRoutes = () => {
                 <Route path="confirmed" element={<Confirmed />} />
                 <Route path="payment" element={<Payment />} />
                 <Route path="payment-history" element={<PaymentHistory />} />
-                {/* <Route path="announcements" element={<Announcements />} /> */}
             </Route>
         </Routes>
     )

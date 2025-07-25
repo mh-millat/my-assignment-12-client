@@ -1,6 +1,3 @@
-
-
-
 import Swal from 'sweetalert2'
 import useBookings from '../../hooks/useBookings'
 import useCancelBooking from '../../hooks/useCancelBooking'

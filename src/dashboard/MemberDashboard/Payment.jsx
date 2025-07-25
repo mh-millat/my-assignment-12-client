@@ -1,11 +1,6 @@
-
-
-
-
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 import useCoupons from '../../hooks/useCoupons'
-
 
 const Payment = () => {
     const [coupon, setCoupon] = useState('')

@@ -1,7 +1,3 @@
-
-
-
-
 import { useState } from 'react'
 
 const paymentData = [

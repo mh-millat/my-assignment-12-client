@@ -8,7 +8,6 @@ const Courts = () => {
     const handleBook = (court) => {
         const token = localStorage.getItem('access-token')
         if (!token) {
-            // redirect or toast later
             alert('Please login first!')
             return
         }
