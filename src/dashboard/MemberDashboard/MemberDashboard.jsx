@@ -1,7 +1,3 @@
-
-
-
-
 import { Outlet, NavLink } from 'react-router-dom'
 
 const getNavLinkClass = (isActive, color = 'blue') =>
@@ -41,7 +37,6 @@ const MemberDashboard = () => {
                     </NavLink> */}
                 </nav>
             </aside>
-
             {/* Main Content */}
             <main className="flex-1 p-6 bg-gray-100 min-h-screen overflow-auto">
                 <Outlet />
