@@ -1,8 +1,5 @@
-
-
-
 import { useQuery } from '@tanstack/react-query';
-import axiosSecure from '../../api/axiosSecure'; // Adjust path as needed
+import axiosSecure from '../../api/axiosSecure';
 
 const fetchAnnouncements = async () => {
   const res = await axiosSecure.get('/announcements');
