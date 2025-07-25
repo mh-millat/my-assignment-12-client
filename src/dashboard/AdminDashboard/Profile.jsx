@@ -1,6 +1,3 @@
-
-
-
 import { useAuth } from "../../contexts/AuthContext";
 
 const Profile = () => {
