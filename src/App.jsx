@@ -1,16 +1,8 @@
-
-
-
-
 import { Routes, Route } from 'react-router-dom';
-
-
 import Home from './pages/Home';
 import Courts from './pages/Courts';
 import Login from './pages/Login';
 import Register from './pages/Register';
-
-
 import Layout from './layouts/Layout';
 
 // Dashboard Routes
