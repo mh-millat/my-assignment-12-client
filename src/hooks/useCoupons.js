@@ -1,4 +1,3 @@
-
 import { useQuery } from '@tanstack/react-query'
 import axiosSecure from '../api/axiosSecure'
 

@@ -21,16 +21,14 @@ const Login = () => {
 
   const onSubmit = async ({ email, password }) => {
     try {
-      // ✅ Firebase Login
       const result = await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful");
 
-      // ✅ Get JWT Token from Backend
       const jwtRes = await axios.post("http://localhost:5000/jwt", { email });
       const token = jwtRes.data.token;
       localStorage.setItem("access-token", token);
 
-      // ✅ Get Role from Backend
+
       const roleRes = await axios.get(`http://localhost:5000/users/role/${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -39,7 +37,6 @@ const Login = () => {
 
       const role = roleRes.data?.role;
 
-      // ✅ Redirect based on Role
       if (role === "admin") {
         navigate("/admin", { replace: true });
       } else if (role === "member") {
@@ -107,7 +104,6 @@ const Login = () => {
         </Link>
       </p>
 
-      {/* Animation keyframes */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px);}

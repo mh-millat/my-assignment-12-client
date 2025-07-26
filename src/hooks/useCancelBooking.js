@@ -11,7 +11,7 @@ const useCancelBooking = () => {
     },
     onSuccess: () => {
       Swal.fire('Cancelled!', 'Booking has been cancelled.', 'success')
-      queryClient.invalidateQueries(['bookings']) // bookings ডেটা রিফ্রেশ করবে
+      queryClient.invalidateQueries(['bookings'])
     },
     onError: () => {
       Swal.fire('Error!', 'Failed to cancel booking.', 'error')

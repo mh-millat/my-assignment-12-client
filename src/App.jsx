@@ -5,13 +5,12 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Layout from './layouts/Layout';
 
-// Dashboard Routes
 import DashboardRoutes from './routes/DashboardRoutes';
 import MemberRoutes from './routes/MemberRoutes';
 import AdminRoutes from './routes/AdminRoutes';
 
 import NotFound from './pages/NotFound';
-import PrivateRoute from './components/PrivateRoute';  // Make sure this works!
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
   return (
