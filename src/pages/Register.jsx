@@ -4,12 +4,15 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { app } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useRegisterUser from "../hooks/useRegisterUser";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
   const auth = getAuth(app);
@@ -38,6 +41,29 @@ const Register = () => {
     } catch (error) {
       toast.error("Failed to register user!");
       console.error(error);
+    }
+  };
+
+  // 🔵 Google Sign-In
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      saveUser({
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        role: "user",
+        registeredAt: new Date(),
+      });
+
+      toast.success("Google Sign-In successful!");
+      navigate("/");
+    } catch (error) {
+      console.error("Google Sign-In error:", error);
+      toast.error("Google Sign-In failed!");
     }
   };
 
@@ -88,7 +114,17 @@ const Register = () => {
         </button>
       </form>
 
-      {/* Animation keyframes */}
+      {/* 🔵 Google Sign In Button */}
+      <div className="mt-6 text-center">
+        <button
+          onClick={handleGoogleSignIn}
+          className="flex items-center gap-2 justify-center w-full border border-gray-300 px-4 py-2 rounded-md shadow-sm hover:bg-gray-100 transition"
+        >
+          <FcGoogle size={22} />
+          <span>Continue with Google</span>
+        </button>
+      </div>
+
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px);}
