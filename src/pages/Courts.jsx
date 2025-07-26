@@ -13,7 +13,7 @@ const Courts = () => {
     const { data: backendCourts = [], isLoading, isError } = useQuery({
         queryKey: ['courts'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/courts')
+            const res = await axios.get('https://my-assignment-12-server-kappa.vercel.app/courts')
             return res.data
         }
     })
