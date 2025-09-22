@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -27,12 +26,12 @@ const Login = () => {
       const email = result.user.email;
 
       // Token from server
-      const jwtRes = await axios.post("https://my-assignment-12-server-kappa.vercel.app/jwt", { email });
+      const jwtRes = await axios.post("https://cheerful-duckanoo-b871d8.netlify.app//jwt", { email });
       const token = jwtRes.data.token;
       localStorage.setItem("access-token", token);
 
       // Get role from server
-      const roleRes = await axios.get(`https://my-assignment-12-server-kappa.vercel.app/users/role/${email}`, {
+      const roleRes = await axios.get(`https://cheerful-duckanoo-b871d8.netlify.app//users/role/${email}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -58,25 +57,30 @@ const Login = () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful");
 
-      const jwtRes = await axios.post("https://my-assignment-12-server-kappa.vercel.app/jwt", { email });
+      const jwtRes = await axios.post("https://cheerful-duckanoo-b871d8.netlify.app//jwt", { email });
       const token = jwtRes.data.token;
       localStorage.setItem("access-token", token);
 
-      const roleRes = await axios.get(`https://my-assignment-12-server-kappa.vercel.app/users/role/${email}`, {
+      // const roleRes = await axios.get(`http://localhost:5000/users/role/${email}`, {
+      const roleRes = await axios.get(`https://cheerful-duckanoo-b871d8.netlify.app//users/role/${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       const role = roleRes.data?.role;
+      console.log(role)
 
       if (role === "admin") {
         navigate("/admin", { replace: true });
-      } else if (role === "member") {
+      }
+       else if (role === "member") {
         navigate("/member", { replace: true });
-      } else {
+      }
+       else {
         navigate("/dashboard", { replace: true });
       }
+      
     } catch (error) {
       console.error("Login error:", error);
       toast.error("Login failed! Check credentials.");
@@ -135,7 +139,7 @@ const Login = () => {
       </div>
 
       <p className="mt-6 text-center text-gray-600 text-sm">
-        Don’t have an account?{" "}
+        Don't have an account?{" "}
         <Link to="/register" className="text-blue-600 font-semibold hover:underline">
           Register here
         </Link>

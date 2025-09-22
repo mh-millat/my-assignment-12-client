@@ -34,7 +34,7 @@ const App = () => {
         <Route
           path="/member/*"
           element={
-            <PrivateRoute>
+            <PrivateRoute roleRequired="member">
               <MemberRoutes />
             </PrivateRoute>
           }

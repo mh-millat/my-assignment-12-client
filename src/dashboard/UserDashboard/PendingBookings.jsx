@@ -6,7 +6,7 @@ const PendingBookings = () => {
 
   // Load pending bookings
   useEffect(() => {
-    fetch('https://my-assignment-12-server-kappa.vercel.app/bookings?status=pending')
+    fetch('https://cheerful-duckanoo-b871d8.netlify.app//bookings?status=pending')
       .then(res => res.json())
       .then(data => setPending(data))
       .catch(err => console.error(err));
@@ -23,7 +23,7 @@ const PendingBookings = () => {
       confirmButtonText: 'Yes, cancel it!'
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`https://my-assignment-12-server-kappa.vercel.app/bookings/${id}`, {
+        fetch(`https://cheerful-duckanoo-b871d8.netlify.app//bookings/${id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())

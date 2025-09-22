@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-  baseURL: "https://my-assignment-12-server-kappa.vercel.app/",
+  baseURL: "https://cheerful-duckanoo-b871d8.netlify.app//",
   withCredentials: true,
 });
 
