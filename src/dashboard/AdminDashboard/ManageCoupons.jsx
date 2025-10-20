@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import axiosSecure from '../../api/axiosSecure';
 
-// Fetch all coupons
+
 const fetchCoupons = async () => {
   const res = await axiosSecure.get('/coupons');
   return res.data;
@@ -15,7 +15,7 @@ const ManageCoupons = () => {
   const [formData, setFormData] = useState({ code: '', discount: '' });
   const [editId, setEditId] = useState(null);
 
-  // Fetch coupons with React Query v5 object syntax
+
   const { data: coupons = [], isLoading, isError } = useQuery({
     queryKey: ['coupons'],
     queryFn: fetchCoupons,
@@ -32,7 +32,7 @@ const ManageCoupons = () => {
     onError: () => toast.error('Failed to add coupon'),
   });
 
-  // Update coupon mutation
+
   const updateMutation = useMutation({
     mutationFn: ({ id, data }) => axiosSecure.patch(`/coupons/${id}`, data),
     onSuccess: () => {
@@ -44,7 +44,7 @@ const ManageCoupons = () => {
     onError: () => toast.error('Failed to update coupon'),
   });
 
-  // Delete coupon mutation
+
   const deleteMutation = useMutation({
     mutationFn: (id) => axiosSecure.delete(`/coupons/${id}`),
     onSuccess: () => {

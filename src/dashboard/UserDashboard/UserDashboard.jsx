@@ -19,9 +19,6 @@ const UserDashboard = () => {
           <NavLink to="announcements" className={({ isActive }) => getNavClass(isActive)}>
             Announcements
           </NavLink>
-          {/* <NavLink to="member" className={({ isActive }) => getNavClass(isActive)}>
-            Member Panel
-          </NavLink> */}
         </nav>
       </aside>
 

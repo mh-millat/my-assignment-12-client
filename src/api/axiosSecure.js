@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-  baseURL: "https://cheerful-duckanoo-b871d8.netlify.app//",
+  baseURL: "http://localhost:5000/",
   withCredentials: true,
 });
 

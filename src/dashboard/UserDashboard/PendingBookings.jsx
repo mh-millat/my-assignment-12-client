@@ -6,7 +6,7 @@ const PendingBookings = () => {
 
   // Load pending bookings
   useEffect(() => {
-    fetch('https://cheerful-duckanoo-b871d8.netlify.app//bookings?status=pending')
+    fetch('http://localhost:5000/bookings?status=pending')
       .then(res => res.json())
       .then(data => setPending(data))
       .catch(err => console.error(err));
@@ -23,7 +23,7 @@ const PendingBookings = () => {
       confirmButtonText: 'Yes, cancel it!'
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`https://cheerful-duckanoo-b871d8.netlify.app//bookings/${id}`, {
+        fetch(`http://localhost:5000/bookings/${id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())

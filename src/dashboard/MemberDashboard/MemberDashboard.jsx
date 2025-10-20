@@ -31,10 +31,6 @@ const MemberDashboard = () => {
                         Payment History
                     </NavLink>
 
-                    {/* Future Use */}
-                    {/* <NavLink to="announcements" className={({ isActive }) => getNavLinkClass(isActive, 'purple')} aria-current={({ isActive }) => (isActive ? 'page' : undefined)}>
-                        Announcements
-                    </NavLink> */}
                 </nav>
             </aside>
             {/* Main Content */}

@@ -1,29 +1,69 @@
+import React from 'react'
+
 const Location = () => {
-    return (
-        <section className="py-10 px-4 md:px-20">
-            <h2 className="text-3xl font-bold mb-4 text-center">📍 Club Location</h2>
-            <p className="text-center mb-4">
-                1234 Sports Avenue, Dhaka 1207, Bangladesh
-            </p>
-            <div className="flex justify-center">
-                <img
-                    src={`https://maps.googleapis.com/maps/api/staticmap?center=Dhaka,Bangladesh&zoom=14&size=600x300&key=${import.meta.env.VITE_GOOGLE_MAP_KEY}`}
-                    alt="Google Map Location"
-                    className="rounded shadow-md max-w-full h-auto"
-                />
-            </div>
-            <div className="text-center mt-4">
-                <a
-                    href="https://www.google.com/maps/place/Dhaka"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline hover:text-blue-800"
-                >
-                    View on Google Maps
-                </a>
-            </div>
-        </section>
-    )
+  return (
+    <section className="py-20 px-6 md:px-20 bg-gradient-to-b from-blue-50 to-blue-100 mt-10 rounded-3xl shadow-lg">
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-blue-800 relative inline-block">
+          📍 Find Our Club
+          <span className="absolute left-1/2 transform -translate-x-1/2 -bottom-2 w-24 h-1 bg-blue-600 rounded-full"></span>
+        </h2>
+        <p className="text-lg text-gray-600 mt-3 max-w-2xl mx-auto">
+          Visit our modern sports facilities — perfectly located in the heart of Dhaka.
+          Experience world-class courts, professional coaching, and a vibrant community.
+        </p>
+      </div>
+
+      {/* Location Info */}
+      <div className="text-center mb-10">
+        <h3 className="text-2xl font-semibold text-blue-700 mb-2">
+          Sports Avenue, Dhaka 1207, Bangladesh
+        </h3>
+        <p className="text-gray-600">
+          📞 +880 1712-345678 | ✉️ info@sportsclub.com
+        </p>
+      </div>
+
+
+      {/* Info Cards */}
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="bg-blue-100 p-6 rounded-2xl shadow-lg hover:-translate-y-2 transition-all border-t-4 border-blue-600 text-center">
+          <h4 className="text-xl font-bold text-blue-700 mb-2">🕒 Working Hours</h4>
+          <p className="text-gray-700">Mon - Fri: 7 AM - 10 PM</p>
+          <p className="text-gray-700">Sat - Sun: 8 AM - 11 PM</p>
+        </div>
+
+        <div className="bg-blue-100 p-6 rounded-2xl shadow-lg hover:-translate-y-2 transition-all border-t-4 border-blue-500 text-center">
+          <h4 className="text-xl font-bold text-blue-600 mb-2">🏆 Facilities Nearby</h4>
+          <p className="text-gray-700">Parking | Café | Locker Room | Shop</p>
+        </div>
+
+        <div className="bg-blue-100 p-6 rounded-2xl shadow-lg hover:-translate-y-2 transition-all border-t-4 border-blue-500 text-center">
+          <h4 className="text-xl font-bold text-blue-600 mb-2">⚡ Club Amenities</h4>
+          <p className="text-gray-700">Wi-Fi | Locker Rooms | Changing Area | Refreshments</p>
+        </div>
+
+        <div className="bg-blue-100 p-6 rounded-2xl shadow-lg hover:-translate-y-2 transition-all border-t-4 border-blue-400 text-center">
+          <h4 className="text-xl font-bold text-blue-500 mb-2">🚗 Easy Access</h4>
+          <p className="text-gray-700">Near Metro Station & Main Road</p>
+        </div>
+      </div>
+
+
+      {/* Button */}
+      <div className="text-center mt-12">
+        <a
+          href="https://www.google.com/maps/place/Dhaka"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-8 py-3 text-lg font-semibold rounded-full bg-blue-700 text-white shadow-lg hover:bg-blue-800 hover:scale-105 transition-all duration-300"
+        >
+          View on Google Maps
+        </a>
+      </div>
+    </section>
+  )
 }
 
 export default Location

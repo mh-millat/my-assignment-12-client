@@ -1,42 +1,51 @@
-const announcements = [
-  {
-    id: 1,
-    title: 'Club will be closed on 14 July',
-    date: '2025-07-14',
-    description: 'Please note the club will remain closed on 14th July due to maintenance.'
-  },
-  {
-    id: 2,
-    title: 'New squash court opening soon!',
-    date: '2025-07-20',
-    description: 'Exciting news! Our brand new squash court will be ready to use from 20th July.'
-  }
-]
+import { useQuery } from "@tanstack/react-query";
+import axiosSecure from "../../api/axiosSecure"; // correct path
+import { useState } from "react";
+import toast from "react-hot-toast";
+
+const fetchAnnouncements = async () => {
+  const res = await axiosSecure.get("/announcements");
+  return res.data;
+};
 
 const Announcements = () => {
-  return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">📢 Club Announcements</h2>
-      <ul className="space-y-4">
-        {announcements.map(({ id, title, date, description }) => (
-          <li
-            key={id}
-            className="bg-white p-5 rounded shadow hover:shadow-md transition-shadow duration-300"
-          >
-            <h3 className="text-lg font-semibold">{title}</h3>
-            <small className="text-gray-500 block mb-2">
-              {new Date(date).toLocaleDateString(undefined, {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </small>
-            <p className="text-gray-700">{description}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
+  const { data: announcements = [], isLoading, isError } = useQuery({
+    queryKey: ["announcements"],
+    queryFn: fetchAnnouncements,
+  });
 
-export default Announcements
+  if (isLoading) return <p className="p-4">Loading announcements...</p>;
+  if (isError) return <p className="p-4 text-red-600">Failed to load announcements.</p>;
+
+  return (
+    <section className="max-w-4xl mx-auto p-6 mt-10">
+      <h2 className="text-3xl font-bold mb-6 text-blue-700">📢 Club Announcements</h2>
+      {announcements.length === 0 ? (
+        <p className="text-gray-600">No announcements found.</p>
+      ) : (
+        <ul className="space-y-4">
+          {announcements.map((ann) => (
+            <li
+              key={ann._id}
+              className="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition-shadow duration-300"
+            >
+              <h3 className="text-xl font-semibold text-blue-600">{ann.title}</h3>
+              <p className="text-gray-700 mt-2">{ann.content}</p>
+              <small className="text-gray-500 mt-1 block">
+                {new Date(ann.date).toLocaleString(undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </small>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+};
+
+export default Announcements;

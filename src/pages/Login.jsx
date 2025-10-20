@@ -26,12 +26,12 @@ const Login = () => {
       const email = result.user.email;
 
       // Token from server
-      const jwtRes = await axios.post("https://cheerful-duckanoo-b871d8.netlify.app//jwt", { email });
+      const jwtRes = await axios.post("http://localhost:5000/jwt", { email });
       const token = jwtRes.data.token;
       localStorage.setItem("access-token", token);
 
       // Get role from server
-      const roleRes = await axios.get(`https://cheerful-duckanoo-b871d8.netlify.app//users/role/${email}`, {
+      const roleRes = await axios.get(`http://localhost:5000/users/role/${email}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -57,12 +57,12 @@ const Login = () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful");
 
-      const jwtRes = await axios.post("https://cheerful-duckanoo-b871d8.netlify.app//jwt", { email });
+      const jwtRes = await axios.post("http://localhost:5000/jwt", { email });
       const token = jwtRes.data.token;
       localStorage.setItem("access-token", token);
 
-      // const roleRes = await axios.get(`http://localhost:5000/users/role/${email}`, {
-      const roleRes = await axios.get(`https://cheerful-duckanoo-b871d8.netlify.app//users/role/${email}`, {
+      // const roleRes = await axios.get(`http://localhost:5000users/role/${email}`, {
+      const roleRes = await axios.get(`http://localhost:5000/users/role/${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

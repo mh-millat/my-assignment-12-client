@@ -11,6 +11,10 @@ import AdminRoutes from './routes/AdminRoutes';
 
 import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute';
+import About from './components/About';
+import Promotions from './components/Promotions';
+import FAQSection from './components/Faq';
+import Contact from './pages/Contact';
 
 const App = () => {
   return (
@@ -21,6 +25,10 @@ const App = () => {
         <Route path="/courts" element={<Courts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<About></About>} />
+        <Route path="/promotions" element={<Promotions></Promotions>} />
+        <Route path="/faq" element={<FAQSection></FAQSection>} />
+        <Route path="/contact" element={<Contact></Contact>} />
 
         {/* Protected Routes */}
         <Route
@@ -56,3 +64,5 @@ const App = () => {
 };
 
 export default App;
+
+
