@@ -7,7 +7,7 @@ function ConfirmedBookings() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/bookings/confirmed?page=1&limit=10')
+        axios.get('https://my-assignment-12-server-kappa.vercel.app/bookings/confirmed?page=1&limit=10')
             .then(res => {
                 const data = res.data;
                 if (data && data.bookings) {

@@ -26,12 +26,12 @@ const Login = () => {
       const email = result.user.email;
 
       // Token from server
-      const jwtRes = await axios.post("http://localhost:5000/jwt", { email });
+      const jwtRes = await axios.post("https://my-assignment-12-server-kappa.vercel.app/jwt", { email });
       const token = jwtRes.data.token;
       localStorage.setItem("access-token", token);
 
       // Get role from server
-      const roleRes = await axios.get(`http://localhost:5000/users/role/${email}`, {
+      const roleRes = await axios.get(`https://my-assignment-12-server-kappa.vercel.app/users/role/${email}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -57,12 +57,12 @@ const Login = () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful");
 
-      const jwtRes = await axios.post("http://localhost:5000/jwt", { email });
+      const jwtRes = await axios.post("https://my-assignment-12-server-kappa.vercel.app/jwt", { email });
       const token = jwtRes.data.token;
       localStorage.setItem("access-token", token);
 
-      // const roleRes = await axios.get(`http://localhost:5000users/role/${email}`, {
-      const roleRes = await axios.get(`http://localhost:5000/users/role/${email}`, {
+      // const roleRes = await axios.get(`https://my-assignment-12-server-kappa.vercel.appusers/role/${email}`, {
+      const roleRes = await axios.get(`https://my-assignment-12-server-kappa.vercel.app/users/role/${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
