@@ -1,21 +1,13 @@
 import { createContext, useEffect, useState, useContext } from "react";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from "../firebase.config";
+import axios from "axios";
+
 export const AuthContext = createContext();
-const auth = getAuth(app);
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
-
-const adminEmails = [
-  "info.admin@gmail.com",
-];
-
-const memberEmails = [
-  "info.member@gmail.com",
-];
+export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
+  const auth = getAuth(app);
   const [user, setUser] = useState(null);
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,21 +17,27 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
 
       if (currentUser) {
-        const email = currentUser.email;
+        try {
+          // Get Firebase ID Token
+          const token = await currentUser.getIdToken();
+          localStorage.setItem("access-token", token);
 
-        if (adminEmails.includes(email)) {
-          setUserRole("admin");
-        } else if (memberEmails.includes(email)) {
-          setUserRole("member");
-        } else {
+          // Fetch role from backend
+          const res = await axios.get(
+            `https://my-assignment-12-server-kappa.vercel.app/users/role/${currentUser.email}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+
+          setUserRole(res.data.role || "user");
+        } catch (err) {
+          console.error("Failed to fetch user role:", err);
           setUserRole("user");
         }
-
-        const token = await currentUser.getIdToken();
-        localStorage.setItem("access-token", token);
       } else {
-        setUserRole(null);
         localStorage.removeItem("access-token");
+        setUserRole(null);
       }
 
       setLoading(false);
@@ -48,10 +46,20 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const logout = () => {
+  const logout = async () => {
     setLoading(true);
-    return signOut(auth);
+    try {
+      await signOut(auth);
+      localStorage.removeItem("access-token");
+      setUser(null);
+      setUserRole(null);
+    } catch (err) {
+      console.error("Logout failed:", err);
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <AuthContext.Provider value={{ user, userRole, loading, logout }}>
       {children}

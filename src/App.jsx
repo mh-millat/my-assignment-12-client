@@ -13,7 +13,6 @@ import NotFound from './pages/NotFound';
 import PrivateRoute from './components/PrivateRoute';
 import About from './components/About';
 import Promotions from './components/Promotions';
-import FAQSection from './components/Faq';
 import Contact from './pages/Contact';
 
 const App = () => {
@@ -27,7 +26,6 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About></About>} />
         <Route path="/promotions" element={<Promotions></Promotions>} />
-        <Route path="/faq" element={<FAQSection></FAQSection>} />
         <Route path="/contact" element={<Contact></Contact>} />
 
         {/* Protected Routes */}

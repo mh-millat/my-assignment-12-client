@@ -19,15 +19,12 @@ const About = () => {
       viewport={{ once: true, amount: 0.3 }}
     >
       {/* Title */}
-      <motion.div className="text-center mb-10" custom={0} variants={fadeUp}>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-blue-800 mb-2 relative inline-block">
-          About Our Sports Club
-          <span className="absolute left-0 -bottom-2 w-full h-1 bg-blue-600 rounded-full"></span>
+      <motion.div className="text-center" custom={0} variants={fadeUp}>
+        <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-2 relative inline-block">
+          🏆 About Our Sports Club
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Inspiring health, teamwork, and excellence since 2005 — your second home for sports, fitness, and friendship.
-        </p>
       </motion.div>
+
 
       {/* Description */}
       <motion.div className="text-lg px-3 leading-8 text-gray-700 text-justify mx-auto" custom={1} variants={fadeUp}>

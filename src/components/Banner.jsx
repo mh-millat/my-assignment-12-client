@@ -1,62 +1,77 @@
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import image1 from '../assets/Banner-1.jpg'
-import image2 from '../assets/Banner-2.jpg'
-import image3 from '../assets/Banner-3.jpg'
+import image1 from "../assets/Banner-1.jpg";
+import image2 from "../assets/Banner-2.jpg";
 
-const images = [image1, image2, image3]
+const images = [image1, image2];
 
 const Banner = () => {
-  const [index, setIndex] = useState(0)
-  const navigate = useNavigate()
+  const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
-  const primary = '#1E40AF' //
+  const primary = "#1E40AF";
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleJoinClick = () => {
-    navigate('/courts')
-  }
+    navigate("/courts");
+  };
 
   return (
-    <div className="w-full h-64 sm:h-80 md:h-[450px] overflow-hidden relative rounded-2xl mt-10">
-      {/* Image Slider */}
+    <div className="relative w-full h-[420px] sm:h-[500px] md:h-[580px] overflow-hidden rounded-2xl mt-10 group">
+      {/*Background Image Slider */}
       <img
         src={images[index]}
-        alt="Club banner"
-        className="w-full h-full object-cover transition-all duration-1000 ease-in-out"
+        alt="Sports Club Banner"
+        className="w-full h-full object-cover transition-all duration-[1500ms] ease-in-out scale-105 group-hover:scale-110"
       />
 
-      {/* Overlay Content */}
-      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-        <div className="text-center px-4 md:px-8 py-6 rounded-3xl bg-white/15 shadow-xl border border-white/30 max-w-3xl">
-          <h1 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md tracking-wide">
-            Welcome to <span className="text-[#1E40AF]">Our Sports Club</span>
+      {/* Black Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/45"></div>
+
+      {/*Centered Content Section */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 sm:px-10">
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl max-w-2xl animate-fadeIn">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg leading-snug mb-4">
+            Push Your <span className="text-[#1E40AF]">Limits</span>.<br />
+            Play With <span className="text-[#1E40AF]">Passion</span>.
           </h1>
-          <p className="mt-4 text-base md:text-lg text-gray-100 max-w-2xl mx-auto leading-relaxed">
-            Stay active, compete with passion, and connect with like-minded athletes. Your fitness journey begins here. Join the movement today!
+
+          <p className="text-gray-200 text-sm sm:text-base md:text-lg leading-relaxed mb-6">
+            Join a thriving sports community — stay active, sharpen your skills,
+            and experience the thrill of competition with like-minded players.
           </p>
 
-          {/*Join Button */}
+          {/* Call-to-Action Button */}
           <button
             onClick={handleJoinClick}
-            className="mt-6 px-6 py-3 rounded-full text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-300"
-            style={{
-              backgroundColor: primary,
-            }}
+            className="relative inline-flex items-center justify-center px-8 py-3 font-semibold text-white rounded-full overflow-hidden shadow-lg group transition-all duration-300"
+            style={{ backgroundColor: primary }}
           >
-            Join Now
+            <span className="relative z-10">Join Now</span>
+            <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
           </button>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default Banner
+      {/* Fade + Slide Animation */}
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 1.2s ease forwards;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Banner;

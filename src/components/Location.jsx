@@ -4,20 +4,15 @@ const Location = () => {
   return (
     <section className="py-20 px-6 md:px-20 bg-gradient-to-b from-blue-50 to-blue-100 mt-10 rounded-3xl shadow-lg">
       {/* Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-blue-800 relative inline-block">
+      <div className="text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-blue-800 relative inline-block">
           📍 Find Our Club
-          <span className="absolute left-1/2 transform -translate-x-1/2 -bottom-2 w-24 h-1 bg-blue-600 rounded-full"></span>
         </h2>
-        <p className="text-lg text-gray-600 mt-3 max-w-2xl mx-auto">
-          Visit our modern sports facilities — perfectly located in the heart of Dhaka.
-          Experience world-class courts, professional coaching, and a vibrant community.
-        </p>
       </div>
 
       {/* Location Info */}
       <div className="text-center mb-10">
-        <h3 className="text-2xl font-semibold text-blue-700 mb-2">
+        <h3 className="text-xl font-semibold text-blue-700 mb-2">
           Sports Avenue, Dhaka 1207, Bangladesh
         </h3>
         <p className="text-gray-600">

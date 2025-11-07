@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-200 px-6 py-12 mt-10">
-      <div className="px-4 mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="px-2 mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Company Info */}
         <div>
           <h2 className="text-xl font-bold text-white mb-4">Sports Club</h2>
@@ -42,20 +42,6 @@ const Footer = () => {
           <p className="mb-2">📞 +880 123-456-7890</p>
           <p className="mb-2">✉️ contact@sportsclub.com</p>
           <p className="mb-4">🏠 Dhaka, Bangladesh</p>
-
-          <form className="flex flex-col sm:flex-row gap-2">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="px-3 py-2 rounded-lg text-gray-900 w-full sm:w-auto flex-1"
-            />
-            <button
-              type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition"
-            >
-              Subscribe
-            </button>
-          </form>
 
           <div className="flex gap-4 mt-4">
             <a href="#" className="hover:text-blue-400 transition">Facebook</a>

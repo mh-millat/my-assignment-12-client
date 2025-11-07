@@ -9,7 +9,7 @@ const MemberDashboard = () => {
     return (
         <div className="min-h-screen flex flex-col md:flex-row">
             {/* Sidebar */}
-            <aside className="w-full md:w-60 bg-gray-800 text-white p-4">
+            <aside className="w-full md:w-60 bg-gray-800 text-white p-4 mt-5">
                 <h2 className="text-2xl font-bold mb-6">🏅 Member Panel</h2>
                 <nav className="flex flex-col space-y-3">
                     <NavLink to="profile" className={({ isActive }) => getNavLinkClass(isActive, 'blue')} aria-current={({ isActive }) => (isActive ? 'page' : undefined)}>

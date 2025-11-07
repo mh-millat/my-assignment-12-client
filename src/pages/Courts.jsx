@@ -4,6 +4,7 @@ import BookingModal from '../components/BookingModal';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Courts = () => {
     const [selectedCourt, setSelectedCourt] = useState(null);
@@ -12,10 +13,10 @@ const Courts = () => {
     const { data: backendCourts = [], isLoading, isError } = useQuery({
         queryKey: ['courts'],
         queryFn: async () => {
-            const res = await axios.get('https://dashing-heliotrope-83dad3.netlify.app/courts');
+            const res = await axios.get('https://my-assignment-12-server-kappa.vercel.app/courts');
             return res.data;
         },
-        refetchInterval: 2000
+        refetchInterval: 2000,
     });
 
     const allCourts = [...courts, ...backendCourts];
@@ -29,38 +30,59 @@ const Courts = () => {
         setSelectedCourt(court);
     };
 
-    if (isLoading) return <p className="text-center mt-4">Loading courts...</p>;
-    if (isError) return <p className="text-center mt-4 text-red-500">Failed to load courts.</p>;
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-dots loading-xl text-blue-500"></span>
+            </div>
+        );
+    }
 
-    const placeholderImage = "https://via.placeholder.com/300x200?text=No+Image";
+    if (isError)
+        return (
+            <p className="text-center mt-4 p-4 text-red-500">
+                Failed to load courts.
+            </p>
+        );
+
+    const placeholderImage = 'https://via.placeholder.com/300x200?text=No+Image';
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Available Courts</h2>
+            <h2 className="text-2xl font-bold mb-6 p-5 text-center text-blue-700">
+                🏸 Available Courts
+            </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {allCourts.map((court, index) => (
-                    <div
+            {/* Responsive Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {allCourts.slice(0, 100).map((court, index) => (
+                    <motion.div
                         key={court._id || court.id || index}
-                        className="border p-4 rounded bg-white shadow"
+                        className="border border-gray-100 p-3 rounded-lg bg-white shadow hover:shadow-md"
+                        whileHover={{ scale: 1.07 }}
+                        whileTap={{ scale: 0.97 }}
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.05 }}
                     >
                         <img
                             src={court.image || placeholderImage}
-                            alt={court.name || "Court"}
-                            className="w-full h-40 object-cover rounded mb-2"
+                            alt={court.name || 'Court'}
+                            className="w-full h-28 object-cover rounded mb-2"
                         />
-                        <h3 className="font-semibold">{court.name}</h3>
-                        <p>Type: {court.type}</p>
-                        <p>Price: ৳ {court.price}</p>
+                        <h3 className="font-semibold text-sm">{court.name}</h3>
+                        <p className="text-xs text-gray-600">Type: {court.type}</p>
+                        <p className="text-xs text-gray-600">Price: ৳ {court.price}</p>
                         <button
-                            className="mt-2 bg-blue-600 text-white px-4 py-2 rounded"
+                            className="mt-2 bg-blue-600 text-white text-xs px-3 py-1.5 rounded w-full hover:bg-blue-700"
                             onClick={() => handleBook(court)}
                         >
                             Book Now
                         </button>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
+
 
             {selectedCourt && (
                 <BookingModal
@@ -73,74 +95,3 @@ const Courts = () => {
 };
 
 export default Courts;
-
-
-// import { useState } from 'react'
-// import courts from '../data/courtsData'
-// import BookingModal from '../components/BookingModal'
-// import { useQuery } from '@tanstack/react-query'
-// import axios from 'axios'
-// import { useNavigate } from 'react-router-dom'
-
-// const Courts = () => {
-//     const [selectedCourt, setSelectedCourt] = useState(null)
-//     const navigate = useNavigate() // 🆕
-
-
-//     const { data: backendCourts = [], isLoading, isError } = useQuery({
-//         queryKey: ['courts'],
-//         queryFn: async () => {
-//             const res = await axios.get('https://dashing-heliotrope-83dad3.netlify.app/courts')
-//             return res.data
-//         }
-//     })
-
-//     const allCourts = [...courts, ...backendCourts]
-
-//     const handleBook = (court) => {
-//         const token = localStorage.getItem('access-token')
-//         if (!token) {
-//             navigate('/login', { replace: true })
-//             return
-//         }
-//         setSelectedCourt(court)
-//     }
-
-//     if (isLoading) return <p className="text-center">Loading courts...</p>
-//     if (isError) return <p className="text-center text-red-500">Failed to load courts.</p>
-
-//     return (
-//         <div className="p-6">
-//             <h2 className="text-2xl font-bold mb-4">Available Courts</h2>
-
-//             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-//                 {allCourts.map((court, index) => (
-//                     <div key={court._id || court.id || index} className="border p-4 rounded bg-white shadow">
-//                         {court.image && (
-//                             <img
-//                                 src={court.image}
-//                                 alt={court.name}
-//                                 className="w-full h-40 object-cover rounded mb-2"
-//                             />
-//                         )}
-//                         <h3 className="font-semibold">{court.name}</h3>
-//                         <p>Type: {court.type}</p>
-//                         <p>Price: ৳ {court.price}</p>
-//                         <button
-//                             className="mt-2 bg-blue-600 text-white px-4 py-2 rounded"
-//                             onClick={() => handleBook(court)}
-//                         >
-//                             Book Now
-//                         </button>
-//                     </div>
-//                 ))}
-//             </div>
-
-//             {selectedCourt && (
-//                 <BookingModal court={selectedCourt} onClose={() => setSelectedCourt(null)} />
-//             )}
-//         </div>
-//     )
-// }
-
-// export default Courts

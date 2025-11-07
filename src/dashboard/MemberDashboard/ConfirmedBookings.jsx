@@ -7,7 +7,7 @@ function ConfirmedBookings() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('https://dashing-heliotrope-83dad3.netlify.app/bookings/confirmed?page=1&limit=10')
+        axios.get('http://localhost:5173/bookings/confirmed?page=1&limit=10')
             .then(res => {
                 const data = res.data;
                 if (data && data.bookings) {
